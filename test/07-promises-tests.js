@@ -26,23 +26,23 @@ describe('07-promises-tasks', () => {
 
     // answer 1
     answer1.then((value) => {
-      assert.equal(
-        value,
-        'Hooray!!! She said "Yes"!',
-        'if parameter is "true" Promise should be resolved with value === \'Hooray!!! She said "Yes"!\'',
-      );
-    }).catch((error) => {
-      const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
-      messages.push(errorMessage.message);
+        assert.equal(
+          value,
+          'Hooray!!! She said "Yes"!',
+          'if parameter is "true" Promise should be resolved with value === \'Hooray!!! She said "Yes"!\'',
+        );
+      }).catch((error) => {
+        const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
+        messages.push(errorMessage.message);
 
-      // answer 2
-    }).then(() => answer2).then((value) => {
-      assert.equal(
-        value,
-        'Oh no, she said "No".',
-        'if parameter is "false" Promise should be resolved with value === \'Oh no, she said "No".\'',
-      );
-    })
+        // answer 2
+      }).then(() => answer2).then((value) => {
+        assert.equal(
+          value,
+          'Oh no, she said "No".',
+          'if parameter is "false" Promise should be resolved with value === \'Oh no, she said "No".\'',
+        );
+      })
       .catch((error) => {
         const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
         messages.push(errorMessage.message);
@@ -80,9 +80,9 @@ describe('07-promises-tasks', () => {
   it.optional('function processAllPromises should return correct Promise that will be resolved with array of values', (done) => {
     const arrayForPromise = new Array(1000).fill(0).map((_, idx) => idx);
     const result1 = tasks.processAllPromises(arrayForPromise.map((item) => Promise.resolve(item)));
-    const result2 = tasks.processAllPromises(arrayForPromise.map((item) => (item % 2
-      ? Promise.resolve(item)
-      : Promise.reject(Error(`Predictable Rejection ${item}`)))));
+    const result2 = tasks.processAllPromises(arrayForPromise.map((item) => (item % 2 ?
+      Promise.resolve(item) :
+      Promise.reject(Error(`Predictable Rejection ${item}`)))));
 
     const messages = [];
     const defaultRejectionMessage = 'Incorrect data!';
@@ -94,26 +94,26 @@ describe('07-promises-tasks', () => {
 
     // result 1
     result1.then((array) => {
-      array.forEach((item, idx) => {
-        assert.equal(
-          item,
-          arrayForPromise[idx],
-          'array\'s items shouldn\'t be Promises objects!',
-        );
-      });
-    }).catch((error) => {
-      const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
-      messages.push(errorMessage.message);
-    // result 2
-    }).then(() => result2).catch((error) => {
-      const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
+        array.forEach((item, idx) => {
+          assert.equal(
+            item,
+            arrayForPromise[idx],
+            'array\'s items shouldn\'t be Promises objects!',
+          );
+        });
+      }).catch((error) => {
+        const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
+        messages.push(errorMessage.message);
+        // result 2
+      }).then(() => result2).catch((error) => {
+        const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
 
-      assert.equal(
-        errorMessage.message,
-        'Predictable Rejection 0',
-        'should reject with Error was given from the first rejected Promise in array!',
-      );
-    })
+        assert.equal(
+          errorMessage.message,
+          'Predictable Rejection 0',
+          'should reject with Error was given from the first rejected Promise in array!',
+        );
+      })
       .catch((error) => {
         const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
         messages.push(errorMessage.message);
@@ -150,21 +150,21 @@ describe('07-promises-tasks', () => {
 
     // result 1
     result1.then((value) => {
-      assert.equal(
-        value,
-        'I\'m first!',
-        'getFastestPromise should return Promise that was resolved first!',
-      );
-    }).catch((error) => {
-      const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
-      messages.push(errorMessage.message);
-      // result 2
-    }).then(() => result2).then(() => {
-      assert(
-        false,
-        'should reject with Error was given from the first rejected Promise in array!',
-      );
-    })
+        assert.equal(
+          value,
+          'I\'m first!',
+          'getFastestPromise should return Promise that was resolved first!',
+        );
+      }).catch((error) => {
+        const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
+        messages.push(errorMessage.message);
+        // result 2
+      }).then(() => result2).then(() => {
+        assert(
+          false,
+          'should reject with Error was given from the first rejected Promise in array!',
+        );
+      })
       .catch((error) => {
         const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
         assert.equal(
@@ -200,10 +200,10 @@ describe('07-promises-tasks', () => {
         global.console.error(err);
         reject(Error('there are should not be any Unhandled Rejections!'));
       });
-      result2 = tasks.chainPromises(arrayForPromise.map((item) => (item % 2
-        ? Promise.resolve(item)
-        : Promise.reject(Error(`Predictable Rejection ${item}`)))),
-      (a, b) => a - b);
+      result2 = tasks.chainPromises(arrayForPromise.map((item) => (item % 2 ?
+          Promise.resolve(item) :
+          Promise.reject(Error(`Predictable Rejection ${item}`)))),
+        (a, b) => a - b);
       result2.then(() => resolve());
     });
 
@@ -222,33 +222,33 @@ describe('07-promises-tasks', () => {
 
     // result 1
     result1.then((value) => {
-      assert.equal(
-        value instanceof Promise,
-        false,
-        'result value shouldn\'t be Promise object!',
-      );
-      assert.equal(
-        Array.isArray(value),
-        false,
-        'result value shouldn\'t be Array!',
-      );
-      assert.equal(
-        value,
-        lorem,
-        'result value should be equal value that could be calculated by reducing array with method action!',
-      );
-    }).catch((error) => {
-      const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
-      messages.push(errorMessage.message);
-      // result 2
-    }).then(() => result2).catch((error) => {
-      const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
+        assert.equal(
+          value instanceof Promise,
+          false,
+          'result value shouldn\'t be Promise object!',
+        );
+        assert.equal(
+          Array.isArray(value),
+          false,
+          'result value shouldn\'t be Array!',
+        );
+        assert.equal(
+          value,
+          lorem,
+          'result value should be equal value that could be calculated by reducing array with method action!',
+        );
+      }).catch((error) => {
+        const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
+        messages.push(errorMessage.message);
+        // result 2
+      }).then(() => result2).catch((error) => {
+        const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
 
-      assert(
-        errorMessage.message.match('Predictable Rejection'),
-        'should not reject with Errors!',
-      );
-    })
+        assert(
+          errorMessage.message.match('Predictable Rejection'),
+          'should not reject with Errors!',
+        );
+      })
       .catch((error) => {
         const errorMessage = error instanceof Error ? error : defaultRejectionMessage;
         messages.push(errorMessage.message);

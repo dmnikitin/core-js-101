@@ -4,15 +4,23 @@ it.optional = require('../extensions/it-optional');
 
 describe('09-functions-n-closures-tasks', () => {
   it.optional('getComposition should return the composition of two functions', () => {
-    [
-      {
-        f: Math.sin, g: Math.asin, arg: 0, result: 0,
+    [{
+        f: Math.sin,
+        g: Math.asin,
+        arg: 0,
+        result: 0,
       },
       {
-        f: (x) => x + 1, g: (x) => x + 1, arg: 1, result: 3,
+        f: (x) => x + 1,
+        g: (x) => x + 1,
+        arg: 1,
+        result: 3,
       },
       {
-        f: (x) => x * x, g: (x) => x + 2, arg: 5, result: 49,
+        f: (x) => x * x,
+        g: (x) => x + 2,
+        arg: 5,
+        result: 49,
       },
     ].forEach((data) => {
       const actual = tasks.getComposition(data.f, data.g);
@@ -37,18 +45,43 @@ describe('09-functions-n-closures-tasks', () => {
 
 
   it.optional('getPolynom should return the polynom with specified coefficients', () => {
-    [
-      {
-        polynom: tasks.getPolynom(2, 3, 5),
-        results: [{ x: 0, y: 5 }, { x: 2, y: 19 }, { x: 3, y: 32 }],
+    [{
+      polynom: tasks.getPolynom(2, 3, 5),
+      results: [{
+        x: 0,
+        y: 5
       }, {
-        polynom: tasks.getPolynom(1, -3),
-        results: [{ x: 0, y: -3 }, { x: 2, y: -1 }, { x: 5, y: 2 }],
+        x: 2,
+        y: 19
       }, {
-        polynom: tasks.getPolynom(8),
-        results: [{ x: 0, y: 8 }, { x: 2, y: 8 }, { x: 5, y: 8 }],
-      },
-    ].forEach((data) => {
+        x: 3,
+        y: 32
+      }],
+    }, {
+      polynom: tasks.getPolynom(1, -3),
+      results: [{
+        x: 0,
+        y: -3
+      }, {
+        x: 2,
+        y: -1
+      }, {
+        x: 5,
+        y: 2
+      }],
+    }, {
+      polynom: tasks.getPolynom(8),
+      results: [{
+        x: 0,
+        y: 8
+      }, {
+        x: 2,
+        y: 8
+      }, {
+        x: 5,
+        y: 8
+      }],
+    }, ].forEach((data) => {
       data.results.forEach((test) => {
         assert(
           test.y === data.polynom(test.x),
@@ -104,8 +137,8 @@ describe('09-functions-n-closures-tasks', () => {
     assert.equal(actual, -1, 'logger function should return the original result from specified function');
     assert.equal(
       log,
-      'cos(3.141592653589793) starts\n'
-           + 'cos(3.141592653589793) ends\n',
+      'cos(3.141592653589793) starts\n' +
+      'cos(3.141592653589793) ends\n',
       'logger function shoud log the start and end of the specified function',
     );
   });
@@ -137,8 +170,8 @@ describe('09-functions-n-closures-tasks', () => {
     assert.equal(actual, 'expected', 'logger function should return the original result from specified function');
     assert.equal(
       log,
-      'testLogger(["expected","test",1],0) starts\n'
-      + 'testLogger(["expected","test",1],0) ends\n',
+      'testLogger(["expected","test",1],0) starts\n' +
+      'testLogger(["expected","test",1],0) ends\n',
       'logger function shoud log the end of specified function after calling',
     );
   });

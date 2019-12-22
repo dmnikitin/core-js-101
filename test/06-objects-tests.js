@@ -49,15 +49,16 @@ describe('06-objects-tasks', () => {
 
 
   it.optional('getJSON should return the JSON representation of specified object', () => {
-    [
-      {
-        obj: [1, 2, 3],
-        expected: '[1,2,3]',
-      }, {
-        obj: { height: 10, width: 20 },
-        expected: '{"height":10,"width":20}',
+    [{
+      obj: [1, 2, 3],
+      expected: '[1,2,3]',
+    }, {
+      obj: {
+        height: 10,
+        width: 20
       },
-    ].forEach((data) => {
+      expected: '{"height":10,"width":20}',
+    }, ].forEach((data) => {
       assert.equal(
         tasks.getJSON(data.obj),
         data.expected,
@@ -81,8 +82,7 @@ describe('06-objects-tasks', () => {
       this.c = c;
     };
 
-    [
-      {
+    [{
         proto: Circle.prototype,
         json: '{ "radius":10 }',
         expected: new Circle(10),
@@ -241,8 +241,8 @@ describe('06-objects-tasks', () => {
         fn,
         /Element, id and pseudo-element should not occur more then one time inside the selector/,
 
-        '\nPlease throw an exception "Element, id and pseudo-element should not occur more then one time inside the selector" '
-        + 'if element, id or pseudo-element occurs twice or more times',
+        '\nPlease throw an exception "Element, id and pseudo-element should not occur more then one time inside the selector" ' +
+        'if element, id or pseudo-element occurs twice or more times',
       );
     });
 
@@ -269,8 +269,8 @@ describe('06-objects-tasks', () => {
         fn,
         /Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element/,
 
-        '\nPlease throw an exception "Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element" '
-        + 'if selector parts arranged in an invalid order.',
+        '\nPlease throw an exception "Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element" ' +
+        'if selector parts arranged in an invalid order.',
       );
     });
   });
