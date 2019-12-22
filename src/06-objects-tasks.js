@@ -21,13 +21,14 @@
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(width, height) {
+  function getArea() {
+    return this.width * this.height;
+  }
   Object.assign(this, {
     width,
     height,
+    getArea,
   });
-  this.getArea = function () {
-    return this.width * this.height;
-  };
 }
 
 
