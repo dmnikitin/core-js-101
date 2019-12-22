@@ -558,7 +558,11 @@ function distinct(arr) {
  */
 function group(array, keySelector, valueSelector) {
   const map = new Map();
-  map.set(keySelector, valueSelector);
+  array.map((val) => {
+    const arr = array.filter((el) => keySelector(el) === keySelector(val));
+    const values = arr.map((el) => valueSelector(el));
+    return map.set(keySelector(val), values);
+  });
   return map;
 }
 
